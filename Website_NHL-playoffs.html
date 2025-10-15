@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Séries éliminatoires LNH</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f3f3f3;
+      text-align: center;
+      margin: 0;
+      padding: 0;
+    }
+    header {
+      background-color: #002868;
+      color: white;
+      padding: 20px;
+    }
+    h1 {
+      margin: 0;
+    }
+    .season-selector {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 20px;
+      margin-top: 10px;
+    }
+    .arrow {
+      font-size: 32px;
+      color: #002868;
+      cursor: pointer;
+      transition: opacity 0.3s;
+      user-select: none;
+    }
+    .arrow.disabled {
+      opacity: 0.2;
+      cursor: default;
+    }
+    h2 {
+      color: #002868;
+      margin: 0;
+    }
+    img {
+      width: auto;
+      max-width: 90%;
+      border: 1px solid #ccc;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Séries éliminatoires de la LNH</h1>
+  </header>
+
+  <div class="season-selector">
+    <span id="left-arrow" class="arrow">◀</span>
+    <h2 id="season-year">Saison 2025</h2>
+    <span id="right-arrow" class="arrow">▶</span>
+  </div>
+
+  <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires">
+
+  <script>
+    const minYear = 2013;
+    const maxYear = 2025;
+    let currentYear = 2025;
+
+    const leftArrow = document.getElementById('left-arrow');
+    const rightArrow = document.getElementById('right-arrow');
+    const seasonYear = document.getElementById('season-year');
+    const playoffImage = document.getElementById('playoff-image');
+
+    function updateDisplay() {
+      seasonYear.textContent = `Saison ${currentYear}`;
+      playoffImage.src = `tableaux/nhl_${currentYear}.png`;
+
+      // Désactiver les flèches selon les limites
+      leftArrow.classList.toggle('disabled', currentYear >= maxYear);
+      rightArrow.classList.toggle('disabled', currentYear <= minYear);
+    }
+
+    // Flèche gauche = remonte les années
+    leftArrow.addEventListener('click', () => {
+      if (currentYear < maxYear) {
+        currentYear++;
+        updateDisplay();
+      }
+    });
+
+    // Flèche droite = descend les années
+    rightArrow.addEventListener('click', () => {
+      if (currentYear > minYear) {
+        currentYear--;
+        updateDisplay();
+      }
+    });
+
+    // Initialisation
+    updateDisplay();
+  </script>
+</body>
+</html>
