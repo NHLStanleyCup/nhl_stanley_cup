@@ -49,6 +49,26 @@
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       margin-top: 10px;
     }
+
+    /* Compteur furtif, en bas à droite */
+    #compteur-visites {
+      position: fixed;
+      bottom: 10px;
+      right: 10px;
+      opacity: 0;                /* invisible par défaut */
+      pointer-events: none;      /* pas cliquable tant qu’invisible */
+      transition: opacity 0.4s ease;
+    }
+
+    /* Apparaît seulement si la souris survole le coin inférieur droit */
+    body:hover #compteur-visites {
+      opacity: 0.6;
+      pointer-events: auto;
+    }
+
+    #compteur-visites:hover {
+      opacity: 1;
+    }
   </style>
 </head>
 <body>
@@ -102,6 +122,14 @@
     // Initialisation
     updateDisplay();
   </script>
+
+  <!-- Compteur HitWebCounter furtif (coin inférieur droit) -->
+  <div id="compteur-visites">
+    <a href="https://www.hitwebcounter.com/" target="_blank">
+      <img src="https://hitwebcounter.com/counter/counter.php?page=21448532&style=0007&nbdigits=6&type=page&initCount=0"
+           title="Compteur de visites" alt="Compteur" border="0" />
+    </a>
+  </div>
+
 </body>
 </html>
-
