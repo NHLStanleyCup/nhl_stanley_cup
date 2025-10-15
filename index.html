@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Séries éliminatoires LNH</title>
   <style>
     body {
@@ -11,15 +11,14 @@
       text-align: center;
       margin: 0;
       padding: 0;
+      min-height: 100vh;
     }
     header {
       background-color: #002868;
       color: white;
       padding: 20px;
     }
-    h1 {
-      margin: 0;
-    }
+    h1 { margin: 0; }
     .season-selector {
       display: flex;
       align-items: center;
@@ -34,15 +33,9 @@
       transition: opacity 0.3s;
       user-select: none;
     }
-    .arrow.disabled {
-      opacity: 0.2;
-      cursor: default;
-    }
-    h2 {
-      color: #002868;
-      margin: 0;
-    }
-    img {
+    .arrow.disabled { opacity: 0.2; cursor: default; }
+    h2 { color: #002868; margin: 0; }
+    img#playoff-image {
       width: auto;
       max-width: 90%;
       border: 1px solid #ccc;
@@ -50,24 +43,45 @@
       margin-top: 10px;
     }
 
-    /* Compteur furtif, en bas à droite */
+    /* ---------- Compteur furtif : hotspot + affichage ---------- */
+
+    /* zone hotspot invisible dans le coin (détecte le passage de la souris) */
+    #compteur-hotspot {
+      position: fixed;
+      right: 0;
+      bottom: 0;
+      width: 48px;          /* taille du coin sensible (ajuste si besoin) */
+      height: 48px;
+      z-index: 9999;        /* très au-dessus */
+      pointer-events: auto; /* capte le survol */
+      /* visible pour debug : outline: 1px solid red; */
+    }
+
+    /* le compteur lui-même, caché par défaut, au-dessus du coin */
     #compteur-visites {
       position: fixed;
       bottom: 10px;
       right: 10px;
-      opacity: 0;                /* invisible par défaut */
-      pointer-events: none;      /* pas cliquable tant qu’invisible */
-      transition: opacity 0.4s ease;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+      z-index: 10000;
+      transform-origin: bottom right;
     }
-
-    /* Apparaît seulement si la souris survole le coin inférieur droit */
-    body:hover #compteur-visites {
-      opacity: 0.6;
+    /* quand le hotspot est survolé, afficher le compteur */
+    #compteur-hotspot:hover + #compteur-visites,
+    #compteur-visites:hover {
+      opacity: 0.88;
       pointer-events: auto;
     }
 
-    #compteur-visites:hover {
-      opacity: 1;
+    /* style de l'image compteur pour s'adapter sans dépasser */
+    #compteur-visites img {
+      display: block;
+      width: auto;
+      height: auto;
+      max-width: 160px;
+      max-height: 48px;
     }
   </style>
 </head>
@@ -82,7 +96,7 @@
     <span id="right-arrow" class="arrow">▶</span>
   </div>
 
-  <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires">
+  <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires" />
 
   <script>
     const minYear = 2013;
@@ -98,34 +112,27 @@
       seasonYear.textContent = `Saison ${currentYear}`;
       playoffImage.src = `tableaux/nhl_${currentYear}.png`;
 
-      // Désactiver les flèches selon les limites
       leftArrow.classList.toggle('disabled', currentYear >= maxYear);
       rightArrow.classList.toggle('disabled', currentYear <= minYear);
     }
 
-    // Flèche gauche = remonte les années
     leftArrow.addEventListener('click', () => {
-      if (currentYear < maxYear) {
-        currentYear++;
-        updateDisplay();
-      }
+      if (currentYear < maxYear) { currentYear++; updateDisplay(); }
     });
 
-    // Flèche droite = descend les années
     rightArrow.addEventListener('click', () => {
-      if (currentYear > minYear) {
-        currentYear--;
-        updateDisplay();
-      }
+      if (currentYear > minYear) { currentYear--; updateDisplay(); }
     });
 
-    // Initialisation
     updateDisplay();
   </script>
 
-  <!-- Compteur HitWebCounter furtif (coin inférieur droit) -->
-  <div id="compteur-visites">
-    <a href="https://www.hitwebcounter.com/" target="_blank">
+  <!-- hotspot invisible : survole exactement le coin inférieur droit -->
+  <div id="compteur-hotspot" aria-hidden="true"></div>
+
+  <!-- compteur (caché par défaut). S'affiche quand on survole #compteur-hotspot -->
+  <div id="compteur-visites" aria-hidden="true">
+    <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener noreferrer">
       <img src="https://hitwebcounter.com/counter/counter.php?page=21448532&style=0007&nbdigits=6&type=page&initCount=0"
            title="Compteur de visites" alt="Compteur" border="0" />
     </a>
