@@ -6,13 +6,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Séries éliminatoires LNH</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      text-align: center;
+    html, body {
+      height: 100%;
       margin: 0;
       padding: 0;
-      min-height: 100vh;
+      background-color: #f3f3f3;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      overflow: hidden; /* empêche toute barre de défilement */
     }
 
     header {
@@ -49,6 +50,7 @@
       border: 1px solid #ccc;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
       margin-top: 10px;
+      max-height: calc(100vh - 180px); /* s’adapte à la hauteur dispo */
     }
 
     /* ---------- FOOTER FIXE ---------- */
@@ -78,13 +80,12 @@
 
     #compteur-visites {
       position: fixed;
-      bottom: 45px; /* ← ajusté pour ne pas être sous le footer */
+      bottom: 45px; /* au-dessus du footer */
       right: 10px;
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
       z-index: 10000;
-      transform-origin: bottom right;
     }
 
     #compteur-hotspot:hover + #compteur-visites,
@@ -116,23 +117,9 @@
 
   <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires" />
 
-footer {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: #002868;
-  color: white;
-  text-align: center;
-  font-size: 14px;
-  padding: 8px 12px;       /* plus d’espace vertical et horizontal */
-  line-height: 1.4;
-  z-index: 9000;
-}
-
-footer p {
-  margin: 4px 0;
-}
+  <footer>
+    © 2025 - Données et tableaux non officiels | Site personnel de passionné de hockey
+  </footer>
 
   <script>
     const minYear = 2013;
@@ -147,7 +134,6 @@ footer p {
     function updateDisplay() {
       seasonYear.textContent = `Saison ${currentYear}`;
       playoffImage.src = `tableaux/nhl_${currentYear}.png`;
-
       leftArrow.classList.toggle('disabled', currentYear >= maxYear);
       rightArrow.classList.toggle('disabled', currentYear <= minYear);
     }
@@ -163,10 +149,10 @@ footer p {
     updateDisplay();
   </script>
 
-  <!-- hotspot invisible : survole le coin inférieur droit -->
+  <!-- hotspot invisible -->
   <div id="compteur-hotspot" aria-hidden="true"></div>
 
-  <!-- compteur (caché par défaut) -->
+  <!-- compteur -->
   <div id="compteur-visites" aria-hidden="true">
     <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener noreferrer">
       <img src="https://hitwebcounter.com/counter/counter.php?page=21448532&style=0007&nbdigits=6&type=page&initCount=0"
@@ -176,5 +162,3 @@ footer p {
 
 </body>
 </html>
-
-
