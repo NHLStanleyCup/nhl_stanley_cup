@@ -116,10 +116,23 @@
 
   <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires" />
 
-  <footer>
-    © 2025 - Données et tableaux non officiels | Site personnel de passionné de hockey
-    Ce site présente les tableaux des séries éliminatoires de la Ligue nationale de hockey (LNH) pour chaque saison de 2013 à aujourd’hui. Projet personnel sans but lucratif, réalisé à titre informatif et historique.
-  </footer>
+footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #002868;
+  color: white;
+  text-align: center;
+  font-size: 14px;
+  padding: 8px 12px;       /* plus d’espace vertical et horizontal */
+  line-height: 1.4;
+  z-index: 9000;
+}
+
+footer p {
+  margin: 4px 0;
+}
 
   <script>
     const minYear = 2013;
@@ -163,4 +176,5 @@
 
 </body>
 </html>
+
 
