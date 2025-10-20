@@ -14,12 +14,15 @@
       padding: 0;
       min-height: 100vh;
     }
+
     header {
       background-color: #002868;
       color: white;
       padding: 20px;
     }
+
     h1 { margin: 0; }
+
     .season-selector {
       display: flex;
       align-items: center;
@@ -27,6 +30,7 @@
       gap: 20px;
       margin-top: 10px;
     }
+
     .arrow {
       font-size: 32px;
       color: #002868;
@@ -34,8 +38,11 @@
       transition: opacity 0.3s;
       user-select: none;
     }
+
     .arrow.disabled { opacity: 0.2; cursor: default; }
+
     h2 { color: #002868; margin: 0; }
+
     img#playoff-image {
       width: auto;
       max-width: 90%;
@@ -44,24 +51,34 @@
       margin-top: 10px;
     }
 
-    /* ---------- Compteur furtif : hotspot + affichage ---------- */
+    /* ---------- FOOTER FIXE ---------- */
+    footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      background-color: #002868;
+      color: white;
+      text-align: center;
+      font-size: 14px;
+      padding: 6px 0;
+      z-index: 9000;
+    }
 
-    /* zone hotspot invisible dans le coin (détecte le passage de la souris) */
+    /* ---------- Compteur furtif ---------- */
     #compteur-hotspot {
       position: fixed;
       right: 0;
       bottom: 0;
-      width: 48px;          /* taille du coin sensible (ajuste si besoin) */
+      width: 48px;
       height: 48px;
-      z-index: 9999;        /* très au-dessus */
-      pointer-events: auto; /* capte le survol */
-      /* visible pour debug : outline: 1px solid red; */
+      z-index: 9999;
+      pointer-events: auto;
     }
 
-    /* le compteur lui-même, caché par défaut, au-dessus du coin */
     #compteur-visites {
       position: fixed;
-      bottom: 10px;
+      bottom: 45px; /* ← ajusté pour ne pas être sous le footer */
       right: 10px;
       opacity: 0;
       pointer-events: none;
@@ -69,14 +86,13 @@
       z-index: 10000;
       transform-origin: bottom right;
     }
-    /* quand le hotspot est survolé, afficher le compteur */
+
     #compteur-hotspot:hover + #compteur-visites,
     #compteur-visites:hover {
       opacity: 0.88;
       pointer-events: auto;
     }
 
-    /* style de l'image compteur pour s'adapter sans dépasser */
     #compteur-visites img {
       display: block;
       width: auto;
@@ -86,6 +102,7 @@
     }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Séries éliminatoires de la LNH</h1>
@@ -98,6 +115,10 @@
   </div>
 
   <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires" />
+
+  <footer>
+    © 2025 - Données et tableaux non officiels | Site personnel de passionné de hockey
+  </footer>
 
   <script>
     const minYear = 2013;
@@ -128,10 +149,10 @@
     updateDisplay();
   </script>
 
-  <!-- hotspot invisible : survole exactement le coin inférieur droit -->
+  <!-- hotspot invisible : survole le coin inférieur droit -->
   <div id="compteur-hotspot" aria-hidden="true"></div>
 
-  <!-- compteur (caché par défaut). S'affiche quand on survole #compteur-hotspot -->
+  <!-- compteur (caché par défaut) -->
   <div id="compteur-visites" aria-hidden="true">
     <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener noreferrer">
       <img src="https://hitwebcounter.com/counter/counter.php?page=21448532&style=0007&nbdigits=6&type=page&initCount=0"
@@ -141,4 +162,3 @@
 
 </body>
 </html>
-
