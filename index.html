@@ -13,6 +13,8 @@
       margin: 0;
       padding: 0;
       min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
     header {
       background-color: #002868;
@@ -20,6 +22,7 @@
       padding: 20px;
     }
     h1 { margin: 0; }
+
     .season-selector {
       display: flex;
       align-items: center;
@@ -36,29 +39,36 @@
     }
     .arrow.disabled { opacity: 0.2; cursor: default; }
     h2 { color: #002868; margin: 0; }
+
     img#playoff-image {
       width: auto;
       max-width: 90%;
       border: 1px solid #ccc;
       box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-      margin-top: 10px;
+      margin: 10px auto;
+    }
+
+    footer {
+      background-color: #002868;
+      color: white;
+      font-size: 14px;
+      padding: 10px 15px;
+      text-align: center;
+      margin-top: auto;
+      line-height: 1.5;
     }
 
     /* ---------- Compteur furtif : hotspot + affichage ---------- */
-
-    /* zone hotspot invisible dans le coin (détecte le passage de la souris) */
     #compteur-hotspot {
       position: fixed;
       right: 0;
       bottom: 0;
-      width: 48px;          /* taille du coin sensible (ajuste si besoin) */
+      width: 48px;
       height: 48px;
-      z-index: 9999;        /* très au-dessus */
-      pointer-events: auto; /* capte le survol */
-      /* visible pour debug : outline: 1px solid red; */
+      z-index: 9999;
+      pointer-events: auto;
     }
 
-    /* le compteur lui-même, caché par défaut, au-dessus du coin */
     #compteur-visites {
       position: fixed;
       bottom: 10px;
@@ -66,17 +76,16 @@
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
-      z-index: 10000;
+      z-index: 10000; /* au-dessus du footer */
       transform-origin: bottom right;
     }
-    /* quand le hotspot est survolé, afficher le compteur */
+
     #compteur-hotspot:hover + #compteur-visites,
     #compteur-visites:hover {
       opacity: 0.88;
       pointer-events: auto;
     }
 
-    /* style de l'image compteur pour s'adapter sans dépasser */
     #compteur-visites img {
       display: block;
       width: auto;
@@ -98,6 +107,10 @@
   </div>
 
   <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires" />
+
+  <footer>
+    © 2025 - Tableau des séries éliminatoires de la LNH | Site personnel sans but lucratif réalisé par un passionné de hockey.
+  </footer>
 
   <script>
     const minYear = 2013;
