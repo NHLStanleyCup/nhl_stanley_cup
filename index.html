@@ -58,7 +58,50 @@
       line-height: 1.5;
     }
 
-    /* ---------- Compteur furtif : hotspot + affichage ---------- */
+    /* ---------- Publicité SportsMemorabilia ---------- */
+    #ad-box {
+      position: absolute;
+      top: 632px;        /* ↕ Position verticale depuis le haut */
+      left: 50%;         /* ↔ Centre horizontalement */
+      transform: translateX(-50%);
+      background: #ffffff;
+      border: 2px solid #002868;
+      border-radius: 10px;
+      padding: 15px 20px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+      max-width: 400px;
+      text-align: center;
+      z-index: 1500;
+    }
+
+    #ad-box img {
+      width: 200px;
+      height: auto;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    #ad-box p {
+      font-size: 15px;
+      color: #002868;
+      font-weight: bold;
+      margin: 0;
+    }
+
+    #close-ad {
+      position: absolute;
+      top: 6px;
+      right: 8px;
+      border: none;
+      background: transparent;
+      color: #002868;
+      font-size: 18px;
+      cursor: pointer;
+    }
+
+    #close-ad:hover { color: red; }
+
+    /* ---------- Compteur ---------- */
     #compteur-hotspot {
       position: fixed;
       right: 0;
@@ -68,24 +111,21 @@
       z-index: 9999;
       pointer-events: auto;
     }
-
     #compteur-visites {
       position: fixed;
-      bottom: 10px;
       right: 10px;
+      bottom: 55px; /* au-dessus du footer */
       opacity: 0;
       pointer-events: none;
       transition: opacity 0.25s ease;
-      z-index: 10000; /* au-dessus du footer */
+      z-index: 10000;
       transform-origin: bottom right;
     }
-
     #compteur-hotspot:hover + #compteur-visites,
     #compteur-visites:hover {
       opacity: 0.88;
       pointer-events: auto;
     }
-
     #compteur-visites img {
       display: block;
       width: auto;
@@ -108,6 +148,15 @@
 
   <img id="playoff-image" src="tableaux/nhl_2025.png" alt="Tableau des séries éliminatoires" />
 
+  <!-- Publicité SportsMemorabilia -->
+  <div id="ad-box">
+    <button id="close-ad">✖</button>
+    <a id="ad-link" href="#" target="_blank" rel="noopener noreferrer">
+      <img src="logos/sportsmemorabilia_logo.svg" alt="Sports Memorabilia" />
+      <p id="ad-text">Produits officiels des Canadiens de Montréal 🏒</p>
+    </a>
+  </div>
+
   <footer>
     © 2025 - Tableau des séries éliminatoires de la LNH | Site personnel sans but lucratif réalisé par un passionné de hockey.
   </footer>
@@ -117,14 +166,33 @@
     const maxYear = 2025;
     let currentYear = 2025;
 
+    const champions = {
+      2025: { team: "Panthers de la Floride", link: "https://sportsmemorabilia.evyy.net/Dy4BVn" },
+      2024: { team: "Avalanche du Colorado", link: "https://sportsmemorabilia.evyy.net/XYZ123" },
+      2023: { team: "Vegas Golden Knights", link: "https://sportsmemorabilia.evyy.net/ABC789" },
+      2022: { team: "Tampa Bay Lightning", link: "https://sportsmemorabilia.evyy.net/UVW456" },
+      2021: { team: "Canadiens de Montréal", link: "https://sportsmemorabilia.evyy.net/YRZLRR" }
+    };
+
     const leftArrow = document.getElementById('left-arrow');
     const rightArrow = document.getElementById('right-arrow');
     const seasonYear = document.getElementById('season-year');
     const playoffImage = document.getElementById('playoff-image');
+    const adText = document.getElementById('ad-text');
+    const adLink = document.getElementById('ad-link');
 
     function updateDisplay() {
       seasonYear.textContent = `Saison ${currentYear}`;
       playoffImage.src = `tableaux/nhl_${currentYear}.png`;
+
+      // Mise à jour publicité selon le champion
+      if (champions[currentYear]) {
+        adText.textContent = `Découvrez des objets de COLLECTION et produits officiels des ${champions[currentYear].team} 🏒`;
+        adLink.href = champions[currentYear].link;
+      } else {
+        adText.textContent = "Découvrez les produits officiels de la LNH 🏒";
+        adLink.href = "https://sportsmemorabilia.evyy.net/";
+      }
 
       leftArrow.classList.toggle('disabled', currentYear >= maxYear);
       rightArrow.classList.toggle('disabled', currentYear <= minYear);
@@ -133,26 +201,25 @@
     leftArrow.addEventListener('click', () => {
       if (currentYear < maxYear) { currentYear++; updateDisplay(); }
     });
-
     rightArrow.addEventListener('click', () => {
       if (currentYear > minYear) { currentYear--; updateDisplay(); }
+    });
+
+    // Fermer la publicité
+    document.getElementById('close-ad').addEventListener('click', () => {
+      document.getElementById('ad-box').style.display = 'none';
     });
 
     updateDisplay();
   </script>
 
-  <!-- hotspot invisible : survole exactement le coin inférieur droit -->
+  <!-- Compteur -->
   <div id="compteur-hotspot" aria-hidden="true"></div>
-
-  <!-- compteur (caché par défaut). S'affiche quand on survole #compteur-hotspot -->
   <div id="compteur-visites" aria-hidden="true">
     <a href="https://www.hitwebcounter.com/" target="_blank" rel="noopener noreferrer">
       <img src="https://hitwebcounter.com/counter/counter.php?page=21448532&style=0007&nbdigits=6&type=page&initCount=0"
            title="Compteur de visites" alt="Compteur" border="0" />
     </a>
   </div>
-
 </body>
 </html>
-
-
