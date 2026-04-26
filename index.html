@@ -14,7 +14,8 @@
   <meta name='impact-site-verification' value='f9b3eb7a-3e09-487b-aa1c-432e91821a01'>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="google-site-verification" content="pLhha-JIVA3AZU3UG3_HU-k1J4QRk4VFK_ef0kVzryk" />
-  <title>Tableaux dddes Séries éliminatoires de la Ligue Nationale de Hockey (LNH)</title>
+  <title>Tableaux des séries éliminatoires de la LNH | Archives 1975-2026</title>
+  <meta name="description" content="Archives visuelles des tableaux des séries éliminatoires de la LNH de 1975 à 2026. Consultez rapidement les parcours, affrontements et champions de la Coupe Stanley par saison.">
   <style>
     body {
       font-family: Arial, sans-serif;
@@ -32,6 +33,14 @@
       padding: 20px;
     }
     h1 { margin: 0; }
+
+    .seo-text {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+    }
 
     .season-selector {
       display: flex;
@@ -152,20 +161,29 @@
     <h1>Séries éliminatoires de la LNH</h1>
   </header>
 
+  <section class="seo-text">
+    <h2>Archives des tableaux des séries éliminatoires de la LNH de 1975 à 2026</h2>
+    <p>
+      Ce site présente les tableaux visuels des séries éliminatoires de la Ligue nationale de hockey,
+      saison par saison, de 1975 à 2026. Chaque tableau permet de consulter les équipes qualifiées,
+      les affrontements, les rondes éliminatoires et le champion de la Coupe Stanley.
+    </p>
+  </section>
+
   <div class="season-selector">
     <span id="left-arrow" class="arrow">◀</span>
     <h2 id="season-year">Saison 2026</h2>
     <span id="right-arrow" class="arrow">▶</span>
   </div>
 
-  <img id="playoff-image" src="tableaux/nhl_2026.png" alt="Tableaux des séries éliminatoires" />
+  <img id="playoff-image" src="tableaux/nhl_2026.png" alt="Tableau des séries éliminatoires de la LNH 2026 - bracket complet de la Coupe Stanley" />
 
   <!-- Publicité SportsMemorabilia -->
   <div id="ad-box">
     <button id="close-ad">✖</button>
     <a id="ad-link" href="#" target="_blank" rel="noopener noreferrer">
       <img src="logos/sportsmemorabilia_logo.svg" alt="Sports Memorabilia" />
-      <p id="ad-text">Produits officiels des Canadiens de Montréal 🏒</p>
+      <p id="ad-text" aria-label="Lien commandité">Lien commandité hockey 🏒</p>
     </a>
   </div>
 
@@ -243,6 +261,8 @@
     function updateDisplay() {
       seasonYear.textContent = `Saison ${currentYear}`;
       playoffImage.src = `tableaux/nhl_${currentYear}.png`;
+      playoffImage.alt = `Tableau des séries éliminatoires de la LNH ${currentYear} - bracket complet de la Coupe Stanley`;
+      document.title = `Tableau des séries éliminatoires de la LNH ${currentYear} | Archives NHL`;
 
       // Mise à jour publicité selon le champion
       if (champions[currentYear]) {
