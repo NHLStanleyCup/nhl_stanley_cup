@@ -63,6 +63,11 @@ h1 {
   font-weight: bold;
 }
 
+.season-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+}
 h2 {
   color: #002868;
   margin: 0;
