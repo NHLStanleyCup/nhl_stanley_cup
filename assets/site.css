@@ -68,6 +68,18 @@ h1 {
   align-items: center;
   gap: 8px;
 }
+
+.last-updated {
+  position: absolute;
+  left: 24px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  font-size: 14px;
+  font-weight: bold;
+  white-space: nowrap;
+}
+
 h2 {
   color: #002868;
   margin: 0;
@@ -75,6 +87,15 @@ h2 {
 
 main {
   flex: 1;
+}
+
+.season-row {
+  position: relative;
+  margin-top: 10px;
+}
+
+.season-row .season-selector {
+  margin-top: 0;
 }
 
 .season-selector, .language-switch {
@@ -277,6 +298,14 @@ footer {
 
   .season-selector {
     gap: 14px;
+    flex-wrap: wrap;
+  }
+
+  .last-updated {
+    position: static;
+    transform: none;
+    flex-basis: 100%;
+    order: -1;
   }
 
   .arrow {
