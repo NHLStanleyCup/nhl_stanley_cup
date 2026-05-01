@@ -245,6 +245,7 @@ footer {
   box-shadow: 0 4px 12px rgba(0,0,0,0.3);
   max-width: 400px;
   text-align: center;
+  line-height: 1.25;
   z-index: 1500;
 }
 
@@ -260,6 +261,7 @@ footer {
   color: #002868;
   font-weight: bold;
   margin: 0;
+  line-height: 1.25;
 }
 
 #close-sponsor {
