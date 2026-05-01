@@ -52,6 +52,29 @@ h1 {
 .menu-button:focus {
   background: rgba(255,255,255,0.18);
 }
+.language-button {
+  position: absolute;
+  right: 18px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 42px;
+  height: 42px;
+  padding: 0 12px;
+  border: 1px solid rgba(255,255,255,0.65);
+  border-radius: 6px;
+  background: rgba(255,255,255,0.08);
+  color: #fff;
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.language-button:hover,
+.language-button:focus {
+  background: rgba(255,255,255,0.18);
+}
 
 .season-jump {
   min-width: 92px;
@@ -284,7 +307,7 @@ footer {
 @media (max-width: 700px) {
   header {
     padding: 16px 56px;
-  }
+  }`n`n  .language-button {`n    right: 10px;`n    min-width: 38px;`n    height: 38px;`n    padding: 0 10px;`n  }
 
   h1 {
     font-size: 24px;
