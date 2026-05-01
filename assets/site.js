@@ -1,6 +1,6 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
-  const closeAd = document.getElementById('close-ad');
-  const adBox = document.getElementById('ad-box');
+  const closeAd = document.getElementById('close-sponsor');
+  const adBox = document.getElementById('sponsor-box');
 
   if (closeAd && adBox) {
     closeAd.addEventListener('click', () => {
@@ -9,7 +9,7 @@
   }
 });
 
-function trackAdClick(event, link) {
+function trackSponsorClick(event, link) {
   event.preventDefault();
 
   const href = link.href;
@@ -25,8 +25,8 @@ function trackAdClick(event, link) {
 
   if (typeof gtag === 'function') {
     gtag('event', 'click_ad', {
-      ad_name: link.dataset.adName || 'sportsmemorabilia',
-      location: link.dataset.adLocation || 'ad_box',
+      ad_name: link.dataset.sponsorName || 'sportsmemorabilia',
+      location: link.dataset.sponsorLocation || 'sponsor_box',
       event_callback: redirect,
       event_timeout: 700
     });

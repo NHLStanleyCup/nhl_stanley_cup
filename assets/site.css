@@ -225,7 +225,7 @@ footer {
   line-height: 1.5;
 }
 
-#ad-box {
+#sponsor-box {
   position: fixed;
   top: 50%;
   right: 18px;
@@ -240,21 +240,21 @@ footer {
   z-index: 1500;
 }
 
-#ad-box img {
+#sponsor-box img {
   width: 200px;
   height: auto;
   display: block;
   margin: 0 auto 10px;
 }
 
-#ad-box p {
+#sponsor-box p {
   font-size: 15px;
   color: #002868;
   font-weight: bold;
   margin: 0;
 }
 
-#close-ad {
+#close-sponsor {
   position: absolute;
   top: 6px;
   right: 8px;
@@ -265,7 +265,7 @@ footer {
   cursor: pointer;
 }
 
-#close-ad:hover {
+#close-sponsor:hover {
   color: red;
 }
 
@@ -342,7 +342,7 @@ footer {
     font-size: 28px;
   }
 
-  #ad-box {
+  #sponsor-box {
     position: static;
     transform: none;
     margin: 12px auto;
