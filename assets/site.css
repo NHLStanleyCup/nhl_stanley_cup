@@ -177,12 +177,20 @@ main {
   line-height: 1.45;
 }
 
-img#playoff-image {
-  width: auto;
+.playoff-stage {
+  position: relative;
+  display: inline-block;
   max-width: 90%;
+  margin: 10px auto 4px;
+  line-height: 0;
+}
+img#playoff-image {
+  display: block;
+  width: 100%;
+  max-width: 100%;
   border: 1px solid #ccc;
   box-shadow: 0 2px 8px rgba(0,0,0,0.2);
-  margin: 10px auto 4px;
+  margin: 0;
 }
 
 .home-panel {
@@ -227,7 +235,7 @@ footer {
 
 #sponsor-box {
   position: absolute;
-  top: 670px;
+  top: 75%;
   left: 50%;
   transform: translateX(-50%);
   background: #ffffff;
