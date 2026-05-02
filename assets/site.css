@@ -249,6 +249,11 @@ footer {
   text-align: center;
   line-height: normal;
   z-index: 1500;
+  visibility: hidden;
+}
+
+body.sponsor-ready #sponsor-box {
+  visibility: visible;
 }
 
 #sponsor-box img {

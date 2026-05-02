@@ -1,6 +1,20 @@
 ﻿document.addEventListener('DOMContentLoaded', () => {
   const closeAd = document.getElementById('close-sponsor');
   const adBox = document.getElementById('sponsor-box');
+  const playoffImage = document.getElementById('playoff-image');
+
+  const showAd = () => {
+    document.body.classList.add('sponsor-ready');
+  };
+
+  if (adBox && playoffImage) {
+    if (playoffImage.complete) {
+      window.requestAnimationFrame(showAd);
+    } else {
+      playoffImage.addEventListener('load', () => window.requestAnimationFrame(showAd), { once: true });
+      playoffImage.addEventListener('error', showAd, { once: true });
+    }
+  }
 
   if (closeAd && adBox) {
     closeAd.addEventListener('click', () => {
