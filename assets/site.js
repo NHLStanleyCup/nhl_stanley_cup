@@ -1,10 +1,10 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
-  const closeAd = document.getElementById('close-sponsor');
-  const adBox = document.getElementById('sponsor-box');
+document.addEventListener('DOMContentLoaded', () => {
+  const closeSponsor = document.getElementById('close-sponsor');
+  const sponsorBox = document.getElementById('sponsor-box');
 
-  if (closeAd && adBox) {
-    closeAd.addEventListener('click', () => {
-      adBox.style.display = 'none';
+  if (closeSponsor && sponsorBox) {
+    closeSponsor.addEventListener('click', () => {
+      sponsorBox.style.display = 'none';
     });
   }
 });
