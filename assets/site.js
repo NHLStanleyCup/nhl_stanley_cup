@@ -38,7 +38,7 @@ function trackSponsorClick(event, link) {
   window.setTimeout(redirect, 700);
 
   if (typeof gtag === 'function') {
-    gtag('event', 'click_ad', {
+    gtag('event', 'click_ad_sportsmemo', {
       ad_name: link.dataset.sponsorName || 'sportsmemorabilia',
       location: link.dataset.sponsorLocation || 'sponsor_box',
       event_callback: redirect,
